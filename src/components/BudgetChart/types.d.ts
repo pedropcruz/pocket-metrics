@@ -1,0 +1,3 @@
+interface BudgetChartProps {
+  salary: number;
+}
