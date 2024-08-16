@@ -1,3 +1,3 @@
 interface SalaryFormProps {
-  onSubmit: (salary: number) => void;
+  onSubmit: (salary: number, budgetRule: BudgetRule) => void;
 }
