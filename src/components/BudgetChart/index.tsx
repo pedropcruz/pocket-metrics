@@ -6,29 +6,41 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-const BudgetChart = ({ salary }: BudgetChartProps) => {
+const BudgetChart = ({ salary, budgetRule }: BudgetChartProps) => {
   const chartConfig = {
     value: {
       label: "Value",
     },
     needs: {
-      label: "Needs (50%)",
+      label: `Needs (${budgetRule.needs}%)`,
       color: "#0088FE",
     },
     wants: {
-      label: "Wants (30%)",
+      label: `Wants (${budgetRule.wants}%)`,
       color: "#00C49F",
     },
     savings: {
-      label: "Savings (20%)",
+      label: `Savings (${budgetRule.savings}%)`,
       color: "#FFBB28",
     },
   } satisfies ChartConfig;
 
   const data = [
-    { name: "Needs (50%)", value: salary * 0.5, fill: "#0088FE" },
-    { name: "Wants (30%)", value: salary * 0.3, fill: "#00C49F" },
-    { name: "Savings (20%)", value: salary * 0.2, fill: "#FFBB28" },
+    {
+      name: `Needs (${budgetRule.needs}%)`,
+      value: salary * (budgetRule.needs / 100),
+      fill: "#0088FE",
+    },
+    {
+      name: `Wants (${budgetRule.wants}%)`,
+      value: salary * (budgetRule.wants / 100),
+      fill: "#00C49F",
+    },
+    {
+      name: `Savings (${budgetRule.savings}%)`,
+      value: salary * (budgetRule.savings / 100),
+      fill: "#FFBB28",
+    },
   ];
 
   return !salary ? null : (
