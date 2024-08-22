@@ -57,33 +57,33 @@ const SalaryForm = ({ onSubmit }: SalaryFormProps) => {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold mb-6">What's your net salary?</h1>
-        <p className="text-muted-foreground">
-          This information will be used solely to calculate your budget
-          allocation based on the 50/30/20 rule or your custom budget rule. We
-          prioritize your privacy; no personal data is stored or used for any
-          other purpose. Our goal is to provide you with a helpful financial
-          planning tool tailored to your income.
-        </p>
+        <div className="space-y-2">
+          <Label htmlFor="net-salary">Income</Label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <span className="text-muted-foreground">€</span>
+            </div>
+            <Input
+              id="net-salary"
+              type="number"
+              placeholder="Enter your Income"
+              className="pl-8"
+              value={salary}
+              onChange={handleSalaryChange}
+              onBlur={() => setTouched(true)}
+            />
+          </div>
+          {error && <p className="text-destructive">{error}</p>}
+        </div>
       </div>
       <RuleSelector onRuleChange={handleRuleChange} budgetRule={budgetRule} />
-      <div className="space-y-2">
-        <Label htmlFor="net-salary">Net Salary</Label>
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <span className="text-muted-foreground">€</span>
-          </div>
-          <Input
-            id="net-salary"
-            type="number"
-            placeholder="Enter your net salary"
-            className="pl-8"
-            value={salary}
-            onChange={handleSalaryChange}
-            onBlur={() => setTouched(true)}
-          />
-        </div>
-        {error && <p className="text-destructive">{error}</p>}
-      </div>
+      <p className="text-muted-foreground">
+        This information will be used solely to calculate your budget allocation
+        based on the 50/30/20 rule or your custom budget rule. We prioritize
+        your privacy; no personal data is stored or used for any other purpose.
+        Our goal is to provide you with a helpful financial planning tool
+        tailored to your income.
+      </p>
     </div>
   );
 };
