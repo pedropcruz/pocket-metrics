@@ -43,7 +43,13 @@ const BudgetChart = ({ salary, budgetRule }: BudgetChartProps) => {
     },
   ];
 
-  return !salary ? null : (
+  return !salary ? (
+    <div className="bg-popover rounded-lg p-6 h-full flex flex-col justify-center">
+      <p className="text-muted-foreground text-center">
+        Please enter your income to see your budget chart.
+      </p>
+    </div>
+  ) : (
     <div className="bg-popover rounded-lg p-6 h-full flex flex-col justify-center">
       <h2 className="text-2xl font-bold mb-4">Budget Chart</h2>
       <div className="flex-1 pb-0">
